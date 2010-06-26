@@ -45,7 +45,14 @@ public class FallingBall {
     public int getColumn() {
       return column;
     }
+
+    public Cell() {}
     
+    public Cell(int row, int column) {
+      this.row = row;
+      this.column = column;
+    }
+
     public Cell(String cellString) {
       StringTokenizer st = new StringTokenizer(cellString);
       row = Integer.valueOf(st.nextToken()).intValue();
@@ -89,6 +96,15 @@ public class FallingBall {
   
   public FallingBall() {
     buildRows();
+  }
+
+  public int cellDiff(Cell first, Cell second) {
+    int rowDiff = second.getRow() - first.getRow();
+    if (second.getColumn() - first.getColumn() > rowDiff) return 0;
+
+    int [] row = rows[rowDiff];
+
+    return row[second.getColumn() - first.getColumn()];
   }
 
   /**

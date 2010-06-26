@@ -71,6 +71,16 @@ public class FallingBallTest extends TestCase {
   }
   
   
+  public void testCellDiff() {
+    assertEquals(1, ball.cellDiff(new FallingBall.Cell(0, 0), new FallingBall.Cell(0, 0)));
+    assertEquals(1, ball.cellDiff(new FallingBall.Cell(0, 0), new FallingBall.Cell(1,1)));
+    assertEquals(1, ball.cellDiff(new FallingBall.Cell(0, 0), new FallingBall.Cell(1,0)));
+    assertEquals(1, ball.cellDiff(new FallingBall.Cell(3, 2), new FallingBall.Cell(3, 2)));
+    assertEquals(1, ball.cellDiff(new FallingBall.Cell(3, 2), new FallingBall.Cell(4, 2)));
+
+  }
+
+
   /**
    * {"3 2", "5 2"}
    * 7
