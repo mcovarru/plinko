@@ -1,6 +1,8 @@
 package test.org.topcoder.plinko;
 
 
+import java.util.Arrays;
+
 import junit.framework.TestCase;
 
 import org.topcoder.plinko.FallingBall;
@@ -37,6 +39,12 @@ public class FallingBallTest extends TestCase {
     assertEquals(19, cell.getRow());
     assertEquals(3, cell.getColumn());
     
+  }
+  
+  public void testRowAtDepth() {
+    assertTrue(Arrays.equals(new int[] {1}, ball.rowAtDepth(0)));
+    assertTrue(Arrays.equals(new int[] {1, 1}, ball.rowAtDepth(1)));
+    assertTrue(Arrays.equals(new int[] {1, 2, 1}, ball.rowAtDepth(2)));    
   }
   
   

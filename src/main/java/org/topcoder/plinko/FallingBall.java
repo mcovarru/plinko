@@ -53,10 +53,43 @@ public class FallingBall {
       if (st.hasMoreElements())
         throw new RuntimeException("should not be more elements in this cell: " + cellString);
     }
+    
+    public boolean equals(Object other) {
+      Cell o = (Cell) other;
+      return row == o.getRow() && column == o.getColumn();
+    }
+    
+    public int hashCode() {
+      return row * 4442 + column;
+    }
   }
   
-
   
+  
+
+  public int [] rowAtDepth(int depth) {
+    if (depth == 0) return new int[] {1};
+    // if (depth == 1) return new int[] {1, 1};
+    
+    int [] prior = rowAtDepth(depth - 1);
+    int [] ret = new int[depth + 1];
+    ret[0] = 1;
+    ret[ret.length - 1] = 1;
+    for (int i = 0; i < prior.length - 1; i++) {
+      ret[i + 1] = prior[i] + prior[i + 1];
+    }
+    
+    return ret;
+    
+  }
+
+  /**
+   * Trick here is the boundary conditions?
+   * 
+   * @param cells
+   * @param n
+   * @return
+   */
   public int howMany(String [] cells, int n) {
     return 0;
   }
