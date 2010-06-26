@@ -68,11 +68,10 @@ public class FallingBall {
   
 
   public int [] rowAtDepth(int depth) {
-    if (depth == 0) return new int[] {1};
-    // if (depth == 1) return new int[] {1, 1};
+    if (depth == 1) return new int[] {1};
     
     int [] prior = rowAtDepth(depth - 1);
-    int [] ret = new int[depth + 1];
+    int [] ret = new int[depth];
     ret[0] = 1;
     ret[ret.length - 1] = 1;
     for (int i = 0; i < prior.length - 1; i++) {

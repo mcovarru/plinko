@@ -42,9 +42,17 @@ public class FallingBallTest extends TestCase {
   }
   
   public void testRowAtDepth() {
-    assertTrue(Arrays.equals(new int[] {1}, ball.rowAtDepth(0)));
-    assertTrue(Arrays.equals(new int[] {1, 1}, ball.rowAtDepth(1)));
-    assertTrue(Arrays.equals(new int[] {1, 2, 1}, ball.rowAtDepth(2)));    
+    assertTrue(Arrays.equals(new int[] {1}, ball.rowAtDepth(1)));
+    assertTrue(Arrays.equals(new int[] {1, 1}, ball.rowAtDepth(2)));
+    assertTrue(Arrays.equals(new int[] {1, 2, 1}, ball.rowAtDepth(3)));
+    
+    // this is really a reformulation of test 1
+    int sum = 0;
+    
+    int [] row30 = ball.rowAtDepth(30);
+    for (int i = 0; i < row30.length; i++)
+      sum += row30[i];
+    assertEquals(536870912, sum);
   }
   
   
