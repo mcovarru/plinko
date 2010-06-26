@@ -65,21 +65,30 @@ public class FallingBall {
   }
   
   
-  
-
   public int [] rowAtDepth(int depth) {
-    if (depth == 1) return new int[] {1};
-    
-    int [] prior = rowAtDepth(depth - 1);
-    int [] ret = new int[depth];
-    ret[0] = 1;
-    ret[ret.length - 1] = 1;
-    for (int i = 0; i < prior.length - 1; i++) {
-      ret[i + 1] = prior[i] + prior[i + 1];
+    return rows[depth - 1];
+  }
+  
+  public static final int MAX_ROWS = 30;
+  private int [] [] rows = new int[MAX_ROWS][];
+  
+  private void buildRows() {
+    rows[0] = new int[] {1};
+    for (int r = 1; r < MAX_ROWS; r++) {
+      int [] prior = rows[r-1];
+      rows[r] = new int[r+1];
+      int [] row = rows[r];
+      row[0] = row[row.length - 1] = 1;
+      
+      for (int i = 0; i < prior.length - 1; i++) {
+        row[i + 1] = prior[i] + prior[i + 1];
+      }
     }
     
-    return ret;
-    
+  }
+  
+  public FallingBall() {
+    buildRows();
   }
 
   /**
