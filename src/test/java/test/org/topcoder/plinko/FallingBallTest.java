@@ -87,7 +87,7 @@ public class FallingBallTest extends TestCase {
    * returns 6
    */
   public void test0() {
-    
+    assertEquals(6, ball.howMany(new String []{"3 2", "5 2"}, 7));
   }
   
   
@@ -97,7 +97,7 @@ public class FallingBallTest extends TestCase {
    * returns 536870912
    */
   public void test1() {
-    
+    assertEquals(536870912, ball.howMany(new String []{"0 0", "0 0"}, 30));
   }
   
   /**
@@ -106,7 +106,7 @@ public class FallingBallTest extends TestCase {
    * returns 1
    */
   public void test2() {
-    
+    assertEquals(1, ball.howMany(new String []{"0 0", "29 0"}, 30));    
   }
   
   
@@ -116,7 +116,7 @@ public class FallingBallTest extends TestCase {
    * returns 0
    */
   public void test3() {
-    
+    assertEquals(0, ball.howMany(new String []{"10 0", "10 1"}, 15));    
   }
 
 }

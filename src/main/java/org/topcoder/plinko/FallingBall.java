@@ -99,12 +99,15 @@ public class FallingBall {
   }
 
   public int cellDiff(Cell first, Cell second) {
+    
+    int colDiff = second.getColumn() - first.getColumn();
     int rowDiff = second.getRow() - first.getRow();
-    if (second.getColumn() - first.getColumn() > rowDiff) return 0;
+
+    if (colDiff > rowDiff) return 0;
 
     int [] row = rows[rowDiff];
 
-    return row[second.getColumn() - first.getColumn()];
+    return row[colDiff];
   }
 
   /**
@@ -114,8 +117,27 @@ public class FallingBall {
    * @param n
    * @return
    */
-  public int howMany(String [] cells, int n) {
-    return 0;
+  public int howMany(String [] pCells, int n) {
+    Cell [] cells = new Cell[pCells.length + 1];
+    Cell [] parsedCells = Cell.parseCells(pCells);
+    
+    // prepend a 0, 0 Cell to the parsed up cells
+    cells[0] = new Cell(0, 0);
+    System.arraycopy(parsedCells, 0, cells, 1, parsedCells.length);
+    
+    // take the product of the different ways the ball can pass through
+    // each of the specified cells
+    int count = 1;
+    for (int c = 0; c < cells.length - 1; c++)
+      count *= cellDiff(cells[c], cells[c+1]);
+    
+    
+    // now account for the final row which may or may not have a cell specified
+    int [] finalRow = rows[(n - 1) - cells[cells.length - 1].row];
+    int sum = 0;
+    for (int s = 0; s < finalRow.length; s++) sum += finalRow[s];
+    
+    return sum * count;
   }
 
 }
