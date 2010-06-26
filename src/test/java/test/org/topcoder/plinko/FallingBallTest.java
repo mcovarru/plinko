@@ -25,7 +25,7 @@ public class FallingBallTest extends TestCase {
     this.ball = null;
   }
   
-  public void testCellParse() {
+  public void testSingleCellParse() {
     FallingBall.Cell cell;
     
     cell = new FallingBall.Cell("0 0");
@@ -39,19 +39,57 @@ public class FallingBallTest extends TestCase {
     
   }
   
-  public void test32_52() {
+  
+  public void testCellArrayParse() {
+    String [] cellStrings = new String[] {"19 3", "12 2"};
+    
+    FallingBall.Cell [] ret = FallingBall.Cell.parseCells(cellStrings);
+    
+    assertEquals(2, ret.length);
+    assertEquals(12, ret[0].getRow());
+    assertEquals(2, ret[0].getColumn());
+    
+    assertEquals(19, ret[1].getRow());
+    assertEquals(3, ret[1].getColumn());
     
   }
   
-  public void test00_00() {
+  
+  /**
+   * {"3 2", "5 2"}
+   * 7
+   * returns 6
+   */
+  public void test0() {
     
   }
   
-  public void test00_290() {
+  
+  /**
+   * {"0 0", "0 0"}
+   * 30
+   * returns 536870912
+   */
+  public void test1() {
     
   }
   
-  public void test100_101() {
+  /**
+   * {"0 0", "29 0"}
+   * 30
+   * returns 1
+   */
+  public void test2() {
+    
+  }
+  
+  
+  /**
+   * {"10 0", "10 1"}
+   * 15
+   * returns 0
+   */
+  public void test3() {
     
   }
 
